@@ -4,7 +4,7 @@ import datetime
 import string
 from faker import Faker
 from calendar import monthrange
-
+from csv import writer
 
 account_creation_form = 'account-creation_form'
 radio_button_mr = 'id_gender1'
@@ -60,7 +60,7 @@ year_of_birth = random.randint(1900, 2003)
 month_of_birth = random.randint(1, 13)
 days_in_birth_month = monthrange(year_of_birth, month_of_birth)
 day_of_birth = random.randint(1, days_in_birth_month[1] + 1)
-
+date_of_birth = f'{day_of_birth}-{month_of_birth}-{year_of_birth}'
 
 def account_creation_form_visible(driver_instance):
     wait_for_visibility_of_element(driver_instance, account_creation_form)

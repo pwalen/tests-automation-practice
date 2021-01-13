@@ -4,7 +4,6 @@ import datetime
 import string
 from faker import Faker
 from calendar import monthrange
-from csv import writer
 
 account_creation_form = 'account-creation_form'
 radio_button_mr = 'id_gender1'
@@ -164,6 +163,7 @@ def correct_phone_mobile_submission(driver_instance):
 
 def correct_alias_submission(driver_instance):
     elem = driver_instance.find_element_by_id(alias_field)
+    elem.clear()
     elem.send_keys(alias)
 
 

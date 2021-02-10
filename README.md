@@ -1,2 +1,2 @@
 # tests-automation-practice
-http://automationpractice.com automated test in Python
+http://automationpractice.com automated tests in Python

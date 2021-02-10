@@ -16,7 +16,7 @@ class Tests(unittest.TestCase):
         self.driver.quit()
 
     def test1_home_page_content_visible(self):
-        self.assertTrue(home_page.home_page_content_visible(self.driver))
+        self.assertTrue(home_page.content_visible(self.driver))
 
     def test2_authentication_page_visible(self):
         home_page.go_to_authentication_page(self.driver)

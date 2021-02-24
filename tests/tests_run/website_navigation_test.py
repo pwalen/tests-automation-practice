@@ -26,6 +26,16 @@ class Tests(unittest.TestCase):
         category_page_for_woman.click_logo(self.driver)
         self.assertTrue(home_page.content_visible(self.driver))
 
+    def test4_display_product_on_hover(self):
+        self.assertTrue(home_page.content_visible(self.driver))
+        home_page.hover_over_faded_short_tshirts(self.driver)
+        self.assertTrue(home_page.quick_view_button_displayed(self.driver))
+        self.assertTrue(home_page.add_to_cart_button_displayed(self.driver))
+        self.assertTrue(home_page.more_button_displayed(self.driver))
+        self.assertTrue(home_page.faded_short_tshirts_name_displayed(self.driver))
+        self.assertTrue(home_page.faded_short_tshirts_price_displayed(self.driver))
+
+
 
 if __name__ == '__main__':
     unittest.main()

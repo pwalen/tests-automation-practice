@@ -35,6 +35,12 @@ class Tests(unittest.TestCase):
         self.assertTrue(home_page.faded_short_tshirts_name_displayed(self.driver))
         self.assertTrue(home_page.faded_short_tshirts_price_displayed(self.driver))
 
+    def test5_popup_title_product_successfully_added_visible(self):
+        self.assertTrue(home_page.content_visible(self.driver))
+        home_page.hover_over_faded_short_tshirts(self.driver)
+        home_page.click_add_to_cart_button(self.driver)
+        self.assertTrue(home_page.icon_ok_on_popup_displayed(self.driver))
+        self.assertTrue(home_page.popup_tittle_product_successfully_added_displayed(self.driver))
 
 
 if __name__ == '__main__':

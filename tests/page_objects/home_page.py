@@ -14,8 +14,8 @@ faded_short_tshirts_name = '//*[@id="homefeatured"]/li[1]/div/div[2]/h5/a'
 faded_short_tshirts_price = '//*[@id="homefeatured"]/li[1]/div/div[1]/div/div[2]/span'
 
 # The popup "Product successfully added to your shopping cart" displays, with the image on the left.
-popup_title = '//*[@id="layer_cart"]/div[1]/div[1]/h2/text()'
-popup_title_text = "Product successfully added to your shopping cart"
+icon_ok_on_popup  = '//*[@id="layer_cart"]/div[1]/div[1]/h2/i'
+popup_title_successfully_added = "Product successfully added to your shopping cart"
 # Next to the image, there are:
 # the product name
 faded_short_tshirts_name_on_popup = 'layer_cart_product_title'
@@ -41,7 +41,7 @@ def click_women_button(driver_instance):
     elem = driver_instance.find_element_by_xpath(women_button_from_top_menu)
     elem.click()
 
-
+# Move the cursor over the image of the first product
 def hover_over_faded_short_tshirts(driver_instance):
     elem = driver_instance.find_element_by_xpath(faded_short_tshirts)
     hover = ActionChains(driver_instance).move_to_element(elem)
@@ -71,22 +71,33 @@ def faded_short_tshirts_price_displayed(driver_instance):
     elem = wait_for_visibility_of_element_by_xpath(driver_instance, faded_short_tshirts_price)
     return elem.is_displayed()
 
+
 def click_add_to_cart_button(driver_instance):
-    elem = driver_instance.find_element_by_xpath(add_to_cart_button)
+    elem = wait_for_visibility_of_element_by_xpath(driver_instance, add_to_cart_button)
     elem.click()
 
 
+def get_faded_short_tshirts_name(driver_instance):
+    elem = wait_for_visibility_of_element_by_xpath(driver_instance, faded_short_tshirts_name)
+    return elem.text
+
+
+def get_faded_short_tshirts_price(driver_instance):
+    elem = wait_for_visibility_of_element_by_xpath(driver_instance, faded_short_tshirts_price)
+    return elem.text
+
 # The popup "Product successfully added to your shopping cart"
-def popup_title_displayed(driver_instance):
-    elem = wait_for_visibility_of_element_by_xpath(driver_instance, popup_title)
+def icon_ok_on_popup_displayed(driver_instance):
+    elem = wait_for_visibility_of_element_by_xpath(driver_instance, icon_ok_on_popup)
     return elem.is_displayed()
 
 
-def popup_tittle_product_successfully_added(driver_instance):
-    elem = driver_instance.find_element_by_xpath(popup_title)
-    if elem.text == popup_title_text:
+def popup_tittle_product_successfully_added_displayed(driver_instance):
+    if popup_title_successfully_added in driver_instance.page_source:
         return True
     else:
         return False
 
 
+# the product name on the popup == the same as on hoover in the previous step
+...

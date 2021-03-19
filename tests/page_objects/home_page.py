@@ -1,31 +1,49 @@
+###* TC-REG: test_run/account_registration_test.py ###
+###* TC-NAV: test_run/website_navigation_test.py ###
+
 from tests.helpers.support_functions import *
 
+# TC-NAV01 - 1. The site is accessible
+# TC-NAV03 - 3. User is taken back to the home page
 first_slide_from_slider = '//*[@id="homeslider"]/li[2]/a/img'
-sign_in_button = 'login'
-women_button_from_top_menu = '//*[@id="block_top_menu"]/ul/li[1]/a'
-# Faded Short Sleeve T-shirts
-faded_short_tshirts = '//*[@id="homefeatured"]/li[1]/div/div[1]/div/a[1]/img'
 
-# Hovering over the "Faded Short Sleeve T-shirts" image, it displays the following elements:
+sign_in_button = 'login'
+
+# TC-NAV02 - 2. Select WOMEN from the top menu
+women_button_from_top_menu = '//*[@id="block_top_menu"]/ul/li[1]/a'
+
+# TC-NAV04 - 3. Move the cursor over the image of the first product
+faded_short_t_shirts = '//*[@id="homefeatured"]/li[1]/div/div[1]/div/a[1]/img'
+
+# TC-NAV04 - 3. The product's image will change to show either the second image containing
+# the price, product name, and three buttons: "Quick view," "Add to cart," and "More."
+faded_short_t_shirts_price = '//*[@id="homefeatured"]/li[1]/div/div[1]/div/div[2]/span'
+faded_short_t_shirts_name = '//*[@id="homefeatured"]/li[1]/div/div[2]/h5/a'
 quick_view_button = '//*[@id="homefeatured"]/li[1]/div/div[1]/div/a[2]/span'
 add_to_cart_button = '//*[@id="homefeatured"]/li[1]/div/div[2]/div[2]/a[1]/span'
 more_button = '//*[@id="homefeatured"]/li[1]/div/div[2]/div[2]/a[2]/span'
-faded_short_tshirts_name = '//*[@id="homefeatured"]/li[1]/div/div[2]/h5/a'
-faded_short_tshirts_price = '//*[@id="homefeatured"]/li[1]/div/div[1]/div/div[2]/span'
 
-# The popup "Product successfully added to your shopping cart" displays, with the image on the left.
-icon_ok_on_popup  = '//*[@id="layer_cart"]/div[1]/div[1]/h2/i'
+# TC-NAV05 - 4. The popup "Product successfully added to your shopping cart" displays
 popup_title_successfully_added = "Product successfully added to your shopping cart"
-# Next to the image, there are:
-# the product name
-faded_short_tshirts_name_on_popup = 'layer_cart_product_title'
 
-# "Quantity" = 1
+# TC-NAV05 - 4. (...) with the green checkmark on the left (...)
+green_checkmark_on_popup = '//*[@id="layer_cart"]/div[1]/div[1]/h2/i'
+
+# TC-NAV05 - 4. (...) Next to the checkmark, there are:
+# a) the product name, the same as in the previous step (...)
+faded_short_t_shirts_name_on_popup = 'layer_cart_product_title'
+
+# TC-NAV05 - 4.  (...) b) "Quantity" equal to 1 (...)
 quantity = 'layer_cart_product_quantity'
 
-# "Total" with the value equal to the product price.
+# TC-NAV05 - 4.  (...)  c) Total with the value equal to the product price. (...)
 total = 'layer_cart_product_price'
 
+
+# The right section of the popup is titled: There is 1 item in your cart, and there are two buttons: Continue shopping and Proceed to checkout.
+
+# TC-NAV01 - 1. The site is accessible
+# TC-NAV03 - 3. User is taken back to the home page
 def content_visible(driver_instance):
     elem = wait_for_visibility_of_element_by_xpath(driver_instance, first_slide_from_slider)
     return elem.is_displayed()
@@ -37,61 +55,56 @@ def go_to_authentication_page(driver_instance):
     elem.click()
 
 
+# TC-NAV02 - Select WOMEN from the top menu
 def click_women_button(driver_instance):
     elem = driver_instance.find_element_by_xpath(women_button_from_top_menu)
     elem.click()
 
-# Move the cursor over the image of the first product
+
+# TC-NAV04 - 3. Move the cursor over the image of the first product
 def hover_over_faded_short_tshirts(driver_instance):
-    elem = driver_instance.find_element_by_xpath(faded_short_tshirts)
+    elem = driver_instance.find_element_by_xpath(faded_short_t_shirts)
     hover = ActionChains(driver_instance).move_to_element(elem)
     hover.perform()
 
 
+# TC-NAV04 - 3. (...) the price (...)
+def faded_short_t_shirts_price_displayed(driver_instance):
+    elem = wait_for_visibility_of_element_by_xpath(driver_instance, faded_short_t_shirts_price)
+    return elem.is_displayed()
+
+
+# TC-NAV04 - 3. (...) product name (...)
+def faded_short_t_shirts_name_displayed(driver_instance):
+    elem = wait_for_visibility_of_element_by_xpath(driver_instance, faded_short_t_shirts_name)
+    return elem.is_displayed()
+
+
+# TC-NAV04 - 3. (...) "Quick view"  (...)
 def quick_view_button_displayed(driver_instance):
     elem = wait_for_visibility_of_element_by_xpath(driver_instance, quick_view_button)
     return elem.is_displayed()
 
 
+# TC-NAV04 - 3. (...) "Add to cart" (...)
 def add_to_cart_button_displayed(driver_instance):
     elem = wait_for_visibility_of_element_by_xpath(driver_instance, add_to_cart_button)
     return elem.is_displayed()
 
 
+# TC-NAV04 - 3. (...) "More" (...)
 def more_button_displayed(driver_instance):
     elem = wait_for_visibility_of_element_by_xpath(driver_instance, more_button)
     return elem.is_displayed()
 
 
-def faded_short_tshirts_name_displayed(driver_instance):
-    elem = wait_for_visibility_of_element_by_xpath(driver_instance, faded_short_tshirts_name)
-    return elem.is_displayed()
-
-def faded_short_tshirts_price_displayed(driver_instance):
-    elem = wait_for_visibility_of_element_by_xpath(driver_instance, faded_short_tshirts_price)
-    return elem.is_displayed()
-
-
+# TC-NAV05 - Click the "Add to cart" button.
 def click_add_to_cart_button(driver_instance):
     elem = wait_for_visibility_of_element_by_xpath(driver_instance, add_to_cart_button)
     elem.click()
 
 
-def get_faded_short_tshirts_name(driver_instance):
-    elem = wait_for_visibility_of_element_by_xpath(driver_instance, faded_short_tshirts_name)
-    return elem.text
-
-
-def get_faded_short_tshirts_price(driver_instance):
-    elem = wait_for_visibility_of_element_by_xpath(driver_instance, faded_short_tshirts_price)
-    return elem.text
-
-# The popup "Product successfully added to your shopping cart"
-def icon_ok_on_popup_displayed(driver_instance):
-    elem = wait_for_visibility_of_element_by_xpath(driver_instance, icon_ok_on_popup)
-    return elem.is_displayed()
-
-
+# TC-NAV05 - 4. The popup "Product successfully added to your shopping cart" displays
 def popup_tittle_product_successfully_added_displayed(driver_instance):
     if popup_title_successfully_added in driver_instance.page_source:
         return True
@@ -99,5 +112,22 @@ def popup_tittle_product_successfully_added_displayed(driver_instance):
         return False
 
 
-# the product name on the popup == the same as on hoover in the previous step
-...
+# TC-NAV05 - 4. (...) with the green checkmark on the left (...)
+def green_checkmark_on_popup_displayed(driver_instance):
+    elem = wait_for_visibility_of_element_by_xpath(driver_instance, green_checkmark_on_popup)
+    return elem.is_displayed()
+
+
+# TC-NAV05 - 4. (...) a) the product name, the same as in the previous step (...)
+def product_name_on_popup_the_same_as_on_hoover(driver_instance):
+    product_name_on_popup_text = driver_instance.find_element_by_id(faded_short_t_shirts_name_on_popup).text
+    product_name_on_hover = driver_instance.find_element_by_xpath(faded_short_t_shirts_name).text
+    if product_name_on_popup_text == product_name_on_hover:
+        return True
+    else:
+        return False
+
+# TODO <br /> b) "Quantity" equal to 1,
+# TODO <br /> c) "Total" with the value equal to the product price.
+# TODO <br /> The right section of the popup is titled: "There is 1 item in your cart,"
+#   and there are two buttons: "Continue shopping" and "Proceed to checkout."

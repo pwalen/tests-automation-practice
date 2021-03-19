@@ -29,18 +29,19 @@ class Tests(unittest.TestCase):
     def test4_display_product_on_hover(self):
         self.assertTrue(home_page.content_visible(self.driver))
         home_page.hover_over_faded_short_tshirts(self.driver)
+        self.assertTrue(home_page.faded_short_t_shirts_price_displayed(self.driver))
+        self.assertTrue(home_page.faded_short_t_shirts_name_displayed(self.driver))
         self.assertTrue(home_page.quick_view_button_displayed(self.driver))
         self.assertTrue(home_page.add_to_cart_button_displayed(self.driver))
         self.assertTrue(home_page.more_button_displayed(self.driver))
-        self.assertTrue(home_page.faded_short_tshirts_name_displayed(self.driver))
-        self.assertTrue(home_page.faded_short_tshirts_price_displayed(self.driver))
 
     def test5_popup_title_product_successfully_added_visible(self):
         self.assertTrue(home_page.content_visible(self.driver))
         home_page.hover_over_faded_short_tshirts(self.driver)
         home_page.click_add_to_cart_button(self.driver)
-        self.assertTrue(home_page.icon_ok_on_popup_displayed(self.driver))
         self.assertTrue(home_page.popup_tittle_product_successfully_added_displayed(self.driver))
+        self.assertTrue(home_page.green_checkmark_on_popup_displayed(self.driver))
+        self.assertTrue(home_page.product_name_on_popup_the_same_as_on_hoover(self.driver))
 
 
 if __name__ == '__main__':

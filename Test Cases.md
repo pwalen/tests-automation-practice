@@ -70,9 +70,9 @@ Expected Results:
 3. The product's image will change to show either the second image containing the price, product name and three buttons: "Quick view," "Add to cart," and "More."
 4. The popup "Product successfully added to your shopping cart" displays, with the image on the left. 
 Next to the image, there are: 
-<br /> a) the product name, the same as in the previous step,
+<br /> a) the product name corresponding with the name from the previous step,
 <br /> b) "Quantity" equal to 1, 
-<br /> c) "Total" with the value equal to the product price.
-<br /> The right section of the popup is titled: "There is 1 item in your cart," and there are two buttons: "Continue shopping" and "Proceed to checkout."
+<br /> c) "Total" matching the product price shown previously.
+<br /> The right section of the popup is titled: "There is 1 item in your cart."
 
 

@@ -42,7 +42,9 @@ class Tests(unittest.TestCase):
         self.assertTrue(home_page.popup_tittle_product_successfully_added_displayed(self.driver))
         self.assertTrue(home_page.green_checkmark_on_popup_displayed(self.driver))
         self.assertTrue(home_page.product_name_on_popup_the_same_as_on_hoover(self.driver))
-
+        self.assertTrue(home_page.quantity_on_popup_equal_to_one(self.driver))
+        self.assertTrue(home_page.total_matching_product_price(self.driver))
+        self.assertTrue(home_page.correct_right_section_title_on_popup(self.driver))
 
 if __name__ == '__main__':
     unittest.main()

@@ -34,13 +34,17 @@ green_checkmark_on_popup = '//*[@id="layer_cart"]/div[1]/div[1]/h2/i'
 faded_short_t_shirts_name_on_popup = 'layer_cart_product_title'
 
 # TC-NAV05 - 4.  (...) b) "Quantity" equal to 1 (...)
-quantity = 'layer_cart_product_quantity'
+quantity_on_popup = 'layer_cart_product_quantity'
 
-# TC-NAV05 - 4.  (...)  c) Total with the value equal to the product price. (...)
-total = 'layer_cart_product_price'
+# TC-NAV05 - 4. (...)  c) "Total" matching the product price shown previously (...)
+total_on_popup = 'layer_cart_product_price'
+
+# TC-NAV05 - 4. (...)  The right section of the popup is titled: "There is 1 item in your cart," (...)
+right_section_title_on_popup = '//*[@id="layer_cart"]/div[1]/div[2]/h2/span[2]'
+right_section_title_on_popup_message = "There is 1 item in your cart."
 
 
-# The right section of the popup is titled: There is 1 item in your cart, and there are two buttons: Continue shopping and Proceed to checkout.
+### *** *** *** *** ###
 
 # TC-NAV01 - 1. The site is accessible
 # TC-NAV03 - 3. User is taken back to the home page
@@ -118,7 +122,7 @@ def green_checkmark_on_popup_displayed(driver_instance):
     return elem.is_displayed()
 
 
-# TC-NAV05 - 4. (...) a) the product name, the same as in the previous step (...)
+# TC-NAV05 - 4. (...) a) the product name corresponding with the name from the previous step (...)
 def product_name_on_popup_the_same_as_on_hoover(driver_instance):
     product_name_on_popup_text = driver_instance.find_element_by_id(faded_short_t_shirts_name_on_popup).text
     product_name_on_hover = driver_instance.find_element_by_xpath(faded_short_t_shirts_name).text
@@ -127,7 +131,31 @@ def product_name_on_popup_the_same_as_on_hoover(driver_instance):
     else:
         return False
 
-# TODO <br /> b) "Quantity" equal to 1,
-# TODO <br /> c) "Total" with the value equal to the product price.
-# TODO <br /> The right section of the popup is titled: "There is 1 item in your cart,"
-#   and there are two buttons: "Continue shopping" and "Proceed to checkout."
+
+# TC-NAV05 - 4.  (...) b) "Quantity" equal to 1 (...)
+def quantity_on_popup_equal_to_one(driver_instance):
+    quantity_on_popup_text = driver_instance.find_element_by_id(quantity_on_popup).text
+    if quantity_on_popup_text == "1":
+        return True
+    else:
+        return False
+
+
+# TC-NAV05 - 4. (...)  c) "Total" matching the product price shown previously (...)
+def total_matching_product_price(driver_instance):
+    faded_short_t_shirts_price_text = wait_for_visibility_of_element_by_xpath(driver_instance,
+                                                                              faded_short_t_shirts_price)
+    total_on_popup_text = wait_for_visibility_of_element_by_xpath(driver_instance, total_on_popup)
+    if faded_short_t_shirts_price_text == total_on_popup_text:
+        return True
+    else:
+        return False
+
+
+# TC-NAV05 - 4. (...) The right section of the popup is titled: "There is 1 item in your cart," (...)
+def correct_right_section_title_on_popup(driver_instance):
+    right_section_title_on_popup_text = driver_instance.find_element_by_xpath(right_section_title_on_popup).text
+    if right_section_title_on_popup_text == right_section_title_on_popup_message:
+        return True
+    else:
+        return False
